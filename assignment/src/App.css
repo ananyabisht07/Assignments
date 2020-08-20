@@ -1,6 +1,7 @@
 *{
   padding:0px;
   margin-top: 0px;
+  
 }
 
 .jumbo{
@@ -213,3 +214,17 @@ background-color: #FFF281;
 .move-left {
   transition-duration: 700ms;
 }
+
+
+/* offers1 */
+.text-style{
+font-weight: bold;
+font-size: 16px;
+}
+
+.text-lightt{
+  color: #aaa2a2 !important;
+  font-size: 14px;
+  font-weight: normal;
+}
+

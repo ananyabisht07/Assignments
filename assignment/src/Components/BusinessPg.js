@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Jumbotron, Card, Container, Row, Col, Button } from 'react-bootstrap';
+import Offers1 from './Offers1';
 
 //this.state.clicked?"my-auto move_to":"my-auto"
 
@@ -236,9 +237,11 @@ class BusinessPg extends Component{
                         </Col>
                     </Row>
 
-                    
+                    <Offers1 />
     
                 </Container>
+
+                
             </div>
         )    
     }
