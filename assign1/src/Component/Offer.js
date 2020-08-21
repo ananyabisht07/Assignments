@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import {Animated} from "react-animated-css";
 import { Row, Col, Container, Card,} from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
 
@@ -84,30 +83,30 @@ function show(activeSection){
     }
 }
 
-class Offers1 extends Component{
+
+class Offer extends Component{
     constructor(props) {
         super(props)
         this.state = { 
             activeSection: 1,
             bool: false,
-            color:"colorss",
-            select:false
+            selected:"buy"
         }
         this.handleToggleSection = this.handleToggleSection.bind(this);
       };
 
 
-      handleToggleSection(e) {
+      handleToggleSection(e,val) {
           const { id } = e.target;
           this.setState(() => ({
             activeSection: id,
             bool: true,
-            select:true
+            selected: val
           }));
       }
     render(){
-        const {activeSection, bool, select,color} = this.state
-        console.log(select)
+        const {activeSection, bool,selected} = this.state
+        
         return(
             <Container style={{marginBottom:"20em", marginTop:"10em"}}>
                 
@@ -116,19 +115,20 @@ class Offers1 extends Component{
                          <Card.Img style={{border:"none", borderRadius:"13px"}} variant="top" src="img/2.png" />
                         <Card.Body>      
                             <Row className="text-center ">
-                                <Col id="1" onClick={this.handleToggleSection}   xs={4} className="my-auto" style={{fontWeight:"700", fontSize:"18px", cursor:"pointer"}} >
-                                    BUY1 <i id="1" className="fa fa-plus fa-1x"></i>
-                                    <p className="text-center linee"></p>
-                                 </Col>
+                                <Col id="1" onClick={(e) => this.handleToggleSection(e,"buy")}   xs={4} className={this.state.selected == "buy"? "my-auto buy" : "my-auto"} style={{fontWeight:"700", fontSize:"18px", cursor:"pointer"}} >
+                                    BUY1 <i id="1" className="fa fa-plus fa-1x"></i> 
+                                    <div className={this.state.selected == "buy"? "text-center linee" : "text-center"}></div>
+                                </Col>
                                
-                                <Col id="2" style={{ cursor:"pointer"}}  onClick={this.handleToggleSection} xs={4} className={ select ? "my-auto colorss" : "my-auto"}>
+                                <Col id="2" style={{ cursor:"pointer"}}  onClick={(e) => this.handleToggleSection(e,"drinks")} xs={4} className={this.state.selected == "drinks"? "my-auto buy" : "my-auto"}>
                                     <i id="2"   className="fa fa-glass fa-2x" ></i>
-                                    <p className={select ? "linee" : ""}></p>
+                                    <div className={this.state.selected == "drinks"? "text-center linee" : "text-center"}></div>
                                 </Col>
                                 
-                                <Col id="3" style={{ cursor:"pointer"}} onClick={this.handleToggleSection} xs={4} className="my-auto">
+                                <Col id="3" style={{ cursor:"pointer"}} onClick={(e) => this.handleToggleSection(e,"user")} xs={4} className={this.state.selected == "user"? "my-auto buy" : "my-auto"}>
                                     <i id="3"  className="fa fa-user fa-2x" ></i>
-                                    <p className={select ? "linee" : ""}></p>
+                                    <div className={this.state.selected == "user"? "text-center linee" : "text-center"}></div>
+                                    
                                 </Col>
                             </Row> <br/>
                             
@@ -144,8 +144,8 @@ class Offers1 extends Component{
                         </Card.Body>         
                     </Card>
 
-                    <Card className="card-style3">
-                    <Card.Img style={{border:"none", borderRadius:"13px"}} variant="top" src="img/2.png" />
+                    <Card className="card-style3" style={{marginTop:"3em"}}>
+                        <Card.Img style={{border:"none", borderRadius:"13px"}} variant="top" src="img/2.png" />
                         <Card.Body>             
                                 <Row>
                                     <Col xs={6} className="text-style my-auto">                        
@@ -155,13 +155,28 @@ class Offers1 extends Component{
                                     <Col xs={6} className="text-right ">
                                         <i className="fa fa-user fa-4x" aria-hidden="true"></i>
                                     </Col>
-                                </Row>
-                                   
-                        </Card.Body>         
+                                </Row>                                 
+                        </Card.Body> 
+                    </Card>
+
+                    
+                    <Card className="card-style3" style={{marginTop:"3em"}}>
+                        <Card.Img style={{border:"none", borderRadius:"13px"}} variant="top" src="img/2.png" />
+                        <Card.Body>             
+                                <Row>
+                                    <Col xs={6} className="text-style my-auto">                        
+                                        <p>Fried Rice</p>
+                                        <p className="text-lightt">Corporate offer</p>
+                                    </Col>
+                                    <Col xs={6} className="text-right ">
+                                        <i className="fa fa-user fa-4x" aria-hidden="true"></i>
+                                    </Col>
+                                </Row>                                 
+                        </Card.Body> 
                     </Card>
             </Container>
         )
     }   
 }
 
-export default Offers1;
+export default Offer;

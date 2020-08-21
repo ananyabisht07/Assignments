@@ -80,7 +80,7 @@ class BusinessPg extends Component{
     render(){
         
 
-        const {move, left, clicked } = this.state;
+        const {move, left, } = this.state;
         return(
             <div>
                 <Jumbotron className="jumbo"></Jumbotron>
