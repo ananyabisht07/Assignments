@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col, Container, Card,} from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
+import Envelope from './Envelope';
 
 
 
@@ -108,6 +109,7 @@ class Offer extends Component{
         const {activeSection, bool,selected} = this.state
         
         return(
+            <div>
             <Container style={{marginBottom:"20em", marginTop:"10em"}}>
                 
 
@@ -174,7 +176,10 @@ class Offer extends Component{
                                 </Row>                                 
                         </Card.Body> 
                     </Card>
+                    <Envelope />
             </Container>
+            
+            </div>
         )
     }   
 }
