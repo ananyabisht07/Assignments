@@ -106,7 +106,7 @@ class Offer extends Component{
           }));
       }
     render(){
-        const {activeSection, bool,selected} = this.state
+        const {activeSection, bool} = this.state
         
         return(
             <div>
