@@ -147,8 +147,10 @@
   color: black !important;
   border: 0px !important;
   border-radius: 13px !important;
-  height: 75px !important;
-  width: 120px !important;
+  height: 60px !important;
+  width: 100px !important;
+  margin-left: 0px;
+  margin: 5px;
 }
 
 
