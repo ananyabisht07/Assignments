@@ -3,6 +3,36 @@ import { Card, Row, Col, Button,  } from "react-bootstrap";
 import {Modal,ModalHeader, ModalBody,} from 'reactstrap';
 import { CSSTransition } from "react-transition-group";
 
+
+function selectButton(buton,toggleModal){
+  if (buton==1){
+    return(
+      <div>
+          <Button className="btn-style1" size="lg">
+            Buy one get <br /> one free{" "}
+            </Button>
+            <img
+              style={{
+                position: "absolute",
+                left: "160px",
+                top: "145px",
+              }}
+              width="50px"
+              height="50px"
+              src="img/arrow.svg"
+              alt="arrow"
+            />
+            <Button onClick={toggleModal} size="lg"  className="btn-style2">Redeem</Button>
+      </div>
+    )
+  }
+  else if (buton==2){
+    return(
+      <Button size="lg" className="btn-style3"><img src="img/tick.png" width="35"  alt="tick" /></Button>
+    )
+  }
+}
+
 function DateCard(props) {
     const { date, datePressed } = props;
 
@@ -45,7 +75,6 @@ function DateCard(props) {
 } 
 
 function Offercard(props) {
-  console.log("ppp",props)
   const { offer,} = props;
 
   
@@ -76,28 +105,13 @@ function Offercard(props) {
               </Col>
             </Row>
             <Row className="justify-content-center text-center">
-              <Button className="btn-style1" size="lg">
-                Buy one get <br /> one free{" "}
-              </Button>
-              <img
-                style={{
-                  position: "absolute",
-                  left: "160px",
-                  top: "145px",
-                }}
-                width="50px"
-                height="50px"
-                src="img/arrow.svg"
-                alt="arrow"
-              />
-              <Button onClick={props.toggleModal}   className="btn-style2">Redeem</Button>
-               
-              <Modal isOpen={props.isModalOpen} toggleModal={props.toggleModal}>
-                    <ModalHeader toggle={props.toggleModal}>Login</ModalHeader>
-                    <ModalBody>
-                        <h1>yes</h1>
-                    </ModalBody>
+              
+                {selectButton(props.buton,props.toggleModal)}
+                
+                <Modal isOpen={props.isModalOpen} toggle={props.toggleModal}>
+                  <ModalHeader style={{background:"#F6F6F6"}} toggle={props.toggleModal}><div style={{marginLeft:"90px",fontWeight:"600"}}><i className="fa fa-check-circle fa-2x"></i> Offer added!!!</div></ModalHeader>
                 </Modal>
+
               </Row>
           </Card.Body>
         </Card>
@@ -181,7 +195,8 @@ class Envelope extends Component {
     this.state = {
       show: "",
       selectedDate: "",
-      isModalOpen:false
+      isModalOpen:false,
+      buton:1
     };
         this.handleToggleSection = this.handleToggleSection.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
@@ -195,9 +210,10 @@ class Envelope extends Component {
   }
 
   toggleModal() {
-    console.log("click")
+
     this.setState({
-        isModalOpen: !this.state.isModalOpen
+        isModalOpen: !this.state.isModalOpen,
+        buton:2
     })
 }
 
@@ -255,6 +271,7 @@ class Envelope extends Component {
           position: "relative",
           marginBottom: 20,
           textAlign: "center",
+          zIndex:"1"
         }}
       >
         <div
@@ -273,8 +290,8 @@ class Envelope extends Component {
           />
           <Locationcard location={show === "location"} />
 
-          <Offercard offer={show === "offer"} isModalOpen={this.state.isModalOpen} toggleModal={() => this.toggleModal()} />
-          <Offercard offer={show === "event"} isModalOpen={this.state.isModalOpen} toggleModal={() => this.toggleModal()} />
+          <Offercard offer={show === "offer"} buton={this.state.buton} isModalOpen={this.state.isModalOpen} toggleModal={() => this.toggleModal()} />
+          <Offercard offer={show === "event"} buton={this.state.buton} isModalOpen={this.state.isModalOpen} toggleModal={() => this.toggleModal()} />
           <DateCard date={show === "date"} datePressed={this.datePressed} />
 
           <img alt="envelope" width="400" src="img/enve.svg" />

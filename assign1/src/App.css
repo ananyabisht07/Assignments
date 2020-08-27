@@ -137,6 +137,16 @@
   font-size: 23px !important;
   font-weight: bolder !important;
   color: black !important;
+  height: 60px;
+}
+
+.btn-style3{
+  border: 0px !important;
+  background: #6ee039 !important;
+  font-size: 23px !important;
+  font-weight: bolder !important;
+  color: black !important;
+  width: 300px;
 }
 
 

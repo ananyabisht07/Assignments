@@ -5,12 +5,15 @@ import 'font-awesome/css/font-awesome.min.css';
 import Offer from './Component/Offer';
 import Footer from './Component/Footer';
 import Footerrr from './Component/Footerrr';
+import 'bootstrap-social/bootstrap-social.css';
 
 function App() {
   return (
     <div className="">
       <Offer />
-      <Footerrr/>
+      <div>
+        <Footerrr/>
+      </div>
       <Footer />
     </div>
   );
