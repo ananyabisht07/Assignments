@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Card, Row, Col, Button,  } from "react-bootstrap";
-import {Modal,ModalHeader, ModalBody,} from 'reactstrap';
+import {Modal,ModalHeader,} from 'reactstrap';
 import { CSSTransition } from "react-transition-group";
 
 
 function selectButton(buton,toggleModal){
-  if (buton==1){
+  if (buton === 1){
     return(
       <div>
           <Button className="btn-style1" size="lg">
@@ -26,7 +26,7 @@ function selectButton(buton,toggleModal){
       </div>
     )
   }
-  else if (buton==2){
+  else if (buton === 2){
     return(
       <Button size="lg" className="btn-style3"><img src="img/tick.png" width="35"  alt="tick" /></Button>
     )
