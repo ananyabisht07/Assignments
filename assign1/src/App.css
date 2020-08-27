@@ -153,5 +153,12 @@
   margin: 5px;
 }
 
+.bg-img{
+  
+  background: url(/img/bg1.svg) no-repeat;
+  background-size: contain;
+  height: 500px;
+}
+
 
 

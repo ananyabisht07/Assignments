@@ -1,50 +1,54 @@
 import React, { Component } from "react";
-import { Card, Row, Col, Button } from "react-bootstrap";
+import { Card, Row, Col, Button,  } from "react-bootstrap";
+import {Modal,ModalHeader, ModalBody,} from 'reactstrap';
 import { CSSTransition } from "react-transition-group";
 
 function DateCard(props) {
-  const { date, datePressed } = props;
+    const { date, datePressed } = props;
 
-  return (
-    <CSSTransition in={date} timeout={1000} classNames={"slide"} unmountOnExit>
-      <div style={{ position: "absolute", top: 180, left: 0, zIndex: -1 }}>
-        <Card className="card-style6">
-          <Row style={{ marginTop: "70px" }} className="justify-content-center">
-            <Col style={{width:"100px"}}
-              xs={5}
-              className="my-auto text-center date-selection"
-              onClick={() => datePressed("21/08/2020 ")}
-              role="button"
-            >
-              <h5 style={{ fontWeight: "700" }}>TUE 21</h5>
-              <p>TODAY</p>
-            </Col>
-            <Col   
-                xs={5}
-                className="my-auto text-center date-selection"
-                onClick={() => datePressed("22/08/2020")}
-                role="button"
-            >
-              <h5 style={{ fontWeight: "700" }}>WED 22</h5>
-              <p>TOMORROW</p>
-            </Col>
-          </Row>
-          <Row style={{ marginTop: "10px" }}>
-            <Col style={{ fontWeight: "800" }} sm={12} className="text-center">
-              <p>
-                more dates <br />
-                <i className="fa fa-angle-down fa-2x"></i>
-              </p>
-            </Col>
-          </Row>
-        </Card>
-      </div>
-    </CSSTransition>
-  );
-}
+    return (
+        <CSSTransition in={date} timeout={1000} classNames={"slide"} unmountOnExit>
+            <div style={{ position: "absolute", top: 180, left: 0, zIndex: -1 }}>
+              <Card className="card-style6">
+                <Row style={{ marginTop: "70px" }} className="justify-content-center">
+                  <Col style={{width:"100px"}}
+                    xs={5}
+                    className="my-auto text-center date-selection"
+                    onClick={() => datePressed("21/08/2020 ")}
+                    role="button"
+                  >
+                    <h5 style={{ fontWeight: "700" }}>TUE 21</h5>
+                    <p>TODAY</p>
+                  </Col>
+                  <Col   
+                      xs={5}
+                      className="my-auto text-center date-selection"
+                      onClick={() => datePressed("22/08/2020")}
+                      role="button"
+                  >
+                    <h5 style={{ fontWeight: "700" }}>WED 22</h5>
+                    <p>TOMORROW</p>
+                  </Col>
+                </Row>
+                <Row style={{ marginTop: "10px" }}>
+                  <Col style={{ fontWeight: "800" }} sm={12} className="text-center">
+                    <p>
+                      more dates <br />
+                      <i className="fa fa-angle-down fa-2x"></i>
+                    </p>
+                  </Col>
+                </Row>
+              </Card>
+            </div>
+        </CSSTransition>
+    );
+} 
 
 function Offercard(props) {
-  const { offer } = props;
+  console.log("ppp",props)
+  const { offer,} = props;
+
+  
   return (
     <CSSTransition in={offer} timeout={1000} classNames={"slide"} unmountOnExit>
       <div style={{ position: "absolute", top: 300, left: 0, zIndex: -1 }}>
@@ -86,8 +90,15 @@ function Offercard(props) {
                 src="img/arrow.svg"
                 alt="arrow"
               />
-              <Button className="btn-style2">Redeem</Button>
-            </Row>
+              <Button onClick={props.toggleModal}   className="btn-style2">Redeem</Button>
+               
+              <Modal isOpen={props.isModalOpen} toggleModal={props.toggleModal}>
+                    <ModalHeader toggle={props.toggleModal}>Login</ModalHeader>
+                    <ModalBody>
+                        <h1>yes</h1>
+                    </ModalBody>
+                </Modal>
+              </Row>
           </Card.Body>
         </Card>
       </div>
@@ -170,9 +181,11 @@ class Envelope extends Component {
     this.state = {
       show: "",
       selectedDate: "",
+      isModalOpen:false
     };
-    this.handleToggleSection = this.handleToggleSection.bind(this);
-    this.datePressed = this.datePressed.bind(this);
+        this.handleToggleSection = this.handleToggleSection.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
+        this.datePressed = this.datePressed.bind(this);
   }
 
   datePressed(date) {
@@ -180,6 +193,13 @@ class Envelope extends Component {
       selectedDate: date,
     });
   }
+
+  toggleModal() {
+    console.log("click")
+    this.setState({
+        isModalOpen: !this.state.isModalOpen
+    })
+}
 
   handleToggleSection(e) {
     const id = e.target.id;
@@ -190,7 +210,7 @@ class Envelope extends Component {
   }
 
   render() {
-    const { show, selectedDate } = this.state;
+    const { show, selectedDate,} = this.state;
     const above = () => {
       if (show === "location")
         return {
@@ -233,7 +253,7 @@ class Envelope extends Component {
         style={{
           marginTop: "50px",
           position: "relative",
-          marginBottom: 500,
+          marginBottom: 20,
           textAlign: "center",
         }}
       >
@@ -253,8 +273,8 @@ class Envelope extends Component {
           />
           <Locationcard location={show === "location"} />
 
-          <Offercard offer={show === "offer"} />
-          <Offercard offer={show === "event"} />
+          <Offercard offer={show === "offer"} isModalOpen={this.state.isModalOpen} toggleModal={() => this.toggleModal()} />
+          <Offercard offer={show === "event"} isModalOpen={this.state.isModalOpen} toggleModal={() => this.toggleModal()} />
           <DateCard date={show === "date"} datePressed={this.datePressed} />
 
           <img alt="envelope" width="400" src="img/enve.svg" />

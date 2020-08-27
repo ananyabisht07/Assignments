@@ -91,7 +91,8 @@ class Offer extends Component{
         this.state = { 
             activeSection: 1,
             bool: false,
-            selected:"buy"
+            selected:"buy",
+            
         }
         this.handleToggleSection = this.handleToggleSection.bind(this);
       };
